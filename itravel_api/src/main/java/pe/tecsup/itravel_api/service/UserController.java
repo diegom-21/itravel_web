@@ -4,34 +4,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pe.tecsup.itravel_api.model.User;
-import pe.tecsup.itravel_api.repository.UserRepository;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.util.List;
 
-import java.util.Optional;
-// Controlador REST que maneja las operaciones relacionadas con la autenticación de usuarios
 @RestController
 @RequestMapping("/itravel/login")
 public class UserController {
-    // Inyección de dependencia del repositorio de usuarios
+
     @Autowired
-    private UserRepository userRepository;
+    private EntityManager entityManager;
 
 
-    // Método que maneja la autenticación de usuarios mediante una solicitud POST
+    // CREE ESTE METODO PARA QUE SE COMPRUEBE QUE ESTA CONECTADO A LA BD DE AWS
+    @GetMapping("/obtenertodo")
+    public ResponseEntity<List<Object[]>> getAll() {
+        // Consulta nativa para obtener todos los registros de la tabla "Usuarios"
+        String sql = "SELECT * FROM Usuarios";
+        Query query = entityManager.createNativeQuery(sql);
+        List<Object[]> results = query.getResultList();
+        return ResponseEntity.ok(results);
+    }
+
+
+    //ESTE METODO Y LO DE ABAJO AUN FALTA CONFIGURAR, EN POSTAM SALE ERROR SERVIDOR
     @PostMapping("/auth")
-    public ResponseEntity<String> login(@RequestBody User user) {
-        String username = user.getEmail();
-        String password = user.getPassword();
-
+    public ResponseEntity<String> login(@RequestBody String usuario_uid_fb) {
         // Lógica de validación de credenciales
-        LoginResult loginResult = validateCredentials(username, password);
+        LoginResult loginResult = validateCredentials(usuario_uid_fb);
 
         // Devuelve una respuesta HTTP apropiada según el resultado de la validación
         switch (loginResult) {
             case LOGIN_SUCCESSFUL:
-                return ResponseEntity.ok("Logeado successful");
+                return ResponseEntity.ok("Logeado exitosamente");
             case INVALID_CREDENTIALS:
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales Erroneas");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
             case USER_NOT_FOUND:
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado :(");
             default:
@@ -39,25 +46,24 @@ public class UserController {
         }
     }
 
-    // Enumeración que representa los posibles resultados de la validación de credenciales
     public enum LoginResult {
         LOGIN_SUCCESSFUL,
         INVALID_CREDENTIALS,
         USER_NOT_FOUND
     }
 
-    // Método que valida las credenciales del usuario
-    public LoginResult validateCredentials(String email, String password) {
-        Optional<User> optionalUser = userRepository.findByEmail(email);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            if (password.equals(user.getPassword())) {
-                return LoginResult.LOGIN_SUCCESSFUL;
-            } else {
-                return LoginResult.INVALID_CREDENTIALS;
-            }
-        }
-        return LoginResult.USER_NOT_FOUND;
-    }
+    //PARECE QUE ACA ES EL PROBLEMA
+    public LoginResult validateCredentials(String usuario_uid_fb) {
+        // Realiza una consulta nativa para validar las credenciales en la tabla "Usuarios"
+        String sql = "SELECT usuario_rol FROM Usuarios WHERE usuario_uid_fb = :usuario_uid_fb";
+        Query query = entityManager.createNativeQuery(sql);
+        query.setParameter("usuario_uid_fb", usuario_uid_fb);
 
+        List<Object> results = query.getResultList();
+        if (results.size() > 0) {
+            return LoginResult.LOGIN_SUCCESSFUL;
+        } else {
+            return LoginResult.USER_NOT_FOUND;
+        }
+    }
 }

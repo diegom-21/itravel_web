@@ -1,55 +1,62 @@
+/*
+
+ESTO YA NO SIRVE
+
+
 package pe.tecsup.itravel_api.model;
+
 import lombok.Data;
+
 import javax.persistence.*;
 
-// Anotación para indicar que esta clase es una entidad JPA
-@Data
 @Entity
-
-// Definición de la tabla en la base de datos
-
-@Table(name = "user")
+@Data
+@Table(name = "Usuarios")
 public class User {
-
-    // Indicar que este campo es la clave primaria y es autoincremental
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer usuario_id;
 
+    private String usuario_uid_fb;
+    private UserRole usuario_rol;
+    private String usuario_foto;
 
-    // Campos para almacenar el email y contraseña del usuario
-    private String email;
-    private String password;
-
-
-    // Métodos de acceso para el campo 'id'
-    public Integer getId() {
-        return id;
+    public Integer getUsuario_id() {
+        return usuario_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUsuario_id(Integer usuario_id) {
+        this.usuario_id = usuario_id;
     }
 
-    // Métodos de acceso para el campo 'email'
-    public String getEmail() {
-        return email;
+    public String getUsuario_uid_fb() {
+        return usuario_uid_fb;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsuario_uid_fb(String usuario_uid_fb) {
+        this.usuario_uid_fb = usuario_uid_fb;
     }
 
-    // Métodos de acceso para el campo 'password'
-    public String getPassword() {
-        return password;
+    public UserRole getUsuario_rol() {
+        return usuario_rol;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUsuario_rol(UserRole usuario_rol) {
+        this.usuario_rol = usuario_rol;
     }
 
+    public String getUsuario_foto() {
+        return usuario_foto;
+    }
 
+    public void setUsuario_foto(String usuario_foto) {
+        this.usuario_foto = usuario_foto;
+    }
 
+    public enum UserRole {
+        CLIENTE,
+        EMPRESA_DE_TRANSPORTE
+    }
 }
 
+ */

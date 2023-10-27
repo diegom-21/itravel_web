@@ -1,5 +1,8 @@
-package pe.tecsup.itravel_api.service;
+/*
 
+LO COMENTO PORQUE SALE ERROR
+
+package pe.tecsup.itravel_api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,3 +34,5 @@ public class RegisterController {
     }
 
 }
+
+*/
