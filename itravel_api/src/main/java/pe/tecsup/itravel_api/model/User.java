@@ -1,8 +1,4 @@
 /*
-
-ESTO YA NO SIRVE
-
-
 package pe.tecsup.itravel_api.model;
 
 import lombok.Data;
@@ -12,51 +8,63 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "Usuarios")
-public class User {
+public class User{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer usuario_id;
+    private int id;
 
-    private String usuario_uid_fb;
-    private UserRole usuario_rol;
-    private String usuario_foto;
+    @Column(name = "usuario_uid_fb", nullable = false, length = 255)
+    private String uidFb;
 
-    public Integer getUsuario_id() {
-        return usuario_id;
+    @Column(name = "usuario_rol", nullable = false, length = 10)
+    @Enumerated(EnumType.STRING)
+    private RolUsuario rol;
+
+    @Column(name = "usuario_foto", nullable = true, length = 45)
+    private String foto;
+
+    public int getId() {
+        return id;
     }
 
-    public void setUsuario_id(Integer usuario_id) {
-        this.usuario_id = usuario_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getUsuario_uid_fb() {
-        return usuario_uid_fb;
+    public String getUidFb() {
+        return uidFb;
     }
 
-    public void setUsuario_uid_fb(String usuario_uid_fb) {
-        this.usuario_uid_fb = usuario_uid_fb;
+    public void setUidFb(String uidFb) {
+        this.uidFb = uidFb;
     }
 
-    public UserRole getUsuario_rol() {
-        return usuario_rol;
+    public RolUsuario getRol() {
+        return rol;
     }
 
-    public void setUsuario_rol(UserRole usuario_rol) {
-        this.usuario_rol = usuario_rol;
+    public void setRol(RolUsuario rol) {
+        this.rol = rol;
     }
 
-    public String getUsuario_foto() {
-        return usuario_foto;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setUsuario_foto(String usuario_foto) {
-        this.usuario_foto = usuario_foto;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
-    public enum UserRole {
+    public enum RolUsuario {
         CLIENTE,
         EMPRESA_DE_TRANSPORTE
     }
+
+
+
 }
 
  */
+
+
