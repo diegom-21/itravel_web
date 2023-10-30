@@ -32,24 +32,39 @@ public class UsuariosController {
 
     @PutMapping("/editarUsuario/{uid}")
     public Usuarios editarUsuario(@PathVariable("uid") String uid, @RequestBody Usuarios usuarioActualizado) {
-        // Buscar el usuario existente por su UID
         Optional<Usuarios> usuarioExistente = usuariosRepository.findByUid(uid);
 
         if (usuarioExistente.isPresent()) {
             Usuarios usuario = usuarioExistente.get();
 
-            // Actualizar los campos del usuario con los valores proporcionados en la solicitud
             usuario.setRol(usuarioActualizado.getRol());
             usuario.setFoto(usuarioActualizado.getFoto());
-
-            // Guardar el usuario actualizado en la base de datos
+            usuario.setNombrecompleto(usuarioActualizado.getNombrecompleto());
+            usuario.setTelefono(usuarioActualizado.getTelefono());
+            usuario.setEstado(usuarioActualizado.getEstado());
             return usuariosRepository.save(usuario);
-
         } else {
-            // null en caso de que la empresa no exista.
             return null;
         }
     }
 
+    @PutMapping("/eliminarUsuario/{uid}")
+    public Usuarios eliminarUsuario(@PathVariable("uid") String uid, @RequestBody(required = false) Usuarios usuarioActualizado) {
+        Optional<Usuarios> usuarioExistente = usuariosRepository.findByUid(uid);
+
+        if (usuarioExistente.isPresent()) {
+            Usuarios usuario = usuarioExistente.get();
+
+            if (usuarioActualizado != null && usuarioActualizado.getEstado() != null) {
+                usuario.setEstado(usuarioActualizado.getEstado());
+            } else {
+                usuario.setEstado(0);
+            }
+
+            return usuariosRepository.save(usuario);
+        } else {
+            return null;
+        }
+    }
 
 }
