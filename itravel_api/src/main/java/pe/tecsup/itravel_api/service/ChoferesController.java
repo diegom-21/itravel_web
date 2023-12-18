@@ -42,7 +42,6 @@ public class ChoferesController {
             // Actualizar los campos del chofer con los valores proporcionados en la solicitud
             chofer.setNombre(choferActualizado.getNombre());
             chofer.setDni(choferActualizado.getDni());
-            chofer.setBusid(choferActualizado.getBusid());
 
             // Guardar el chofer actualizado en la base de datos
             return choferesRepository.save(chofer);

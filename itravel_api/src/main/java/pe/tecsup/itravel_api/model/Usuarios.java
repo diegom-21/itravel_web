@@ -25,6 +25,8 @@ public class Usuarios {
 
     private Integer estado;
 
+    private String dni;
+
 
     public String getTelefono() {
         return telefono;
@@ -82,5 +84,13 @@ public class Usuarios {
 
     public void setRol(Integer rol) {
         this.rol = rol;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 }

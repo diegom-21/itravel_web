@@ -35,9 +35,8 @@ public class BoletosController {
         if (boletoExistente.isPresent()) {
             Boletos boleto = boletoExistente.get();
 
-            boleto.setBusid(boletoActualizado.getBusid());
+            boleto.setPasajeid(boletoActualizado.getPasajeid());
             boleto.setUsuariouid(boletoActualizado.getUsuariouid());
-            boleto.setPrecio(boletoActualizado.getPrecio());
             boleto.setFechacompra(boletoActualizado.getFechacompra());
             boleto.setEstado(boletoActualizado.getEstado());
 

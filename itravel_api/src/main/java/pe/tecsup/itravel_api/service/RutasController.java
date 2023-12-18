@@ -40,6 +40,12 @@ public class RutasController {
             ruta.setDuracionviaje(rutaActualizada.getDuracionviaje());
             ruta.setDistancia(rutaActualizada.getDistancia());
             ruta.setPrecio(rutaActualizada.getPrecio());
+            ruta.setHorainicio(rutaActualizada.getHorainicio());
+            ruta.setHorasalida(rutaActualizada.getHorasalida());
+            ruta.setNombreTerminalInicio(rutaActualizada.getNombreTerminalInicio());
+            ruta.setNombreTerminalFinal(rutaActualizada.getNombreTerminalFinal());
+            ruta.setUbiTerminalInicio(rutaActualizada.getUbiTerminalInicio());
+            ruta.setUbiTerminalFinal(rutaActualizada.getUbiTerminalFinal());
             ruta.setEmpresaid(rutaActualizada.getEmpresaid());
 
             return rutasRepository.save(ruta);
@@ -63,4 +69,13 @@ public class RutasController {
         }
         return null;
     }
+
+    @GetMapping("/buscarPasaje")
+    public List<Rutas> buscarPasaje(
+            @RequestParam(name = "origen") String origen,
+            @RequestParam(name = "destino") String destino
+    ) {
+        return rutasRepository.findAllByOrigenciudadAndDestinociudad(origen, destino);
+    }
+
 }

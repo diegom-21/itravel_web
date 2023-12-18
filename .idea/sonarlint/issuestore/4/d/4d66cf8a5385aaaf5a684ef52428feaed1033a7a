@@ -1,0 +1,11 @@
+
+[
+java:S3516:"9Refactor this method to not always return the same value.(‘›¦ìûÿÿÿÿ8õŠ—šÇ1
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8öŠ—šÇ1
+b
+java:S4684"@Replace this persistent entity with a simple POJO or DTO object.( ÓÅ–ıÿÿÿÿ8úŠ—šÇ1
+]
+java:S4684 "@Replace this persistent entity with a simple POJO or DTO object.(İ•8ûŠ—šÇ1
+b
+java:S4684:"@Replace this persistent entity with a simple POJO or DTO object.(‘›¦ìûÿÿÿÿ8ıŠ—šÇ1

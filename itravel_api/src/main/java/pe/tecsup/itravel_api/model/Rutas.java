@@ -14,9 +14,66 @@ public class Rutas {
     private String origenciudad;
     private String destinociudad;
     private String duracionviaje;
+    private String horainicio;
+    private String horasalida;
     private float distancia;
     private float precio;
     private int empresaid;
+
+    private String nombreterminalinicio;
+    private String nombreterminalfinal;
+    private String ubiterminalinicio;
+    private String ubiterminalfinal;
+
+    public String getNombreTerminalInicio() {
+        return nombreterminalinicio;
+    }
+
+    public void setNombreTerminalInicio(String nombreterminalinicio) {
+        this.nombreterminalinicio = nombreterminalinicio;
+    }
+
+    public String getNombreTerminalFinal() {
+        return nombreterminalfinal;
+    }
+
+    public void setNombreTerminalFinal(String nombreterminalfinal) {
+        this.nombreterminalfinal = nombreterminalfinal;
+    }
+
+    public String getUbiTerminalInicio() {
+        return ubiterminalinicio;
+    }
+
+    public void setUbiTerminalInicio(String ubiterminalinicio) {
+        this.ubiterminalinicio = ubiterminalinicio;
+    }
+
+    public String getUbiTerminalFinal() {
+        return ubiterminalfinal;
+    }
+
+    public void setUbiTerminalFinal(String ubiterminalfinal) {
+        this.ubiterminalfinal = ubiterminalfinal;
+    }
+
+    public String getHorainicio() {
+        return horainicio;
+    }
+
+    public void setHorainicio(String horainicio) {
+        this.horainicio = horainicio;
+    }
+
+    public String getHorasalida() {
+        return horasalida;
+    }
+
+    public void setHorasalida(String horasalida) {
+        this.horasalida = horasalida;
+    }
+
+
 
     public int getId() {
         return id;

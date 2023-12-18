@@ -9,4 +9,8 @@ import java.util.Optional;
 public interface UsuariosRepository extends JpaRepository<Usuarios, Integer> {
 
     Optional<Usuarios> findByUid(String uid);
+
+    // Nuevo método para buscar un usuario por nombre completo y teléfono
+    Optional<Usuarios> findByNombrecompletoAndDni(String nombrecompleto, String dni);
+
 }
